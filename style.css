@@ -1,0 +1,209 @@
+:root {
+    --bg-dark: #020617;
+    --panel-bg: rgba(15, 23, 42, 0.9);
+    --neon-cyan: #22d3ee;
+    --neon-purple: #a855f7;
+    --neon-green: #4ade80;
+    --text-dim: #94a3b8;
+    --text-light: #f1f5f9;
+    --font-header: 'Teko', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-dim);
+    font-family: var(--font-mono);
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Fondo con efecto de rejilla sutil */
+.bg-animation {
+    position: fixed;
+    width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(34, 211, 238, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34, 211, 238, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+}
+
+.main-wrapper {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    height: 100vh;
+}
+
+/* Sidebar */
+.profile-panel {
+    background: var(--panel-bg);
+    border-right: 1px solid var(--neon-cyan);
+    padding: 3rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+}
+
+.profile-scanner {
+    width: 120px; height: 120px;
+    border: 2px solid var(--neon-cyan);
+    position: relative;
+    margin-bottom: 1.5rem;
+    padding: 5px;
+}
+
+.profile-scanner img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+
+.scanner-line {
+    position: absolute;
+    width: 100%; height: 2px;
+    background: var(--neon-cyan);
+    box-shadow: 0 0 15px var(--neon-cyan);
+    animation: scan 2.5s infinite ease-in-out;
+}
+
+@keyframes scan { 0%, 100% { top: 0; } 50% { top: 100%; } }
+
+.glitch-text {
+    font-family: var(--font-header);
+    font-size: 2.5rem;
+    color: var(--text-light);
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+.status { font-size: 0.7rem; color: var(--neon-green); margin-bottom: 2rem; }
+.blink { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Nav */
+.matrix-nav { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    color: var(--neon-cyan);
+    padding: 12px;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-mono);
+    transition: 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: rgba(34, 211, 238, 0.1);
+    border-color: var(--neon-cyan);
+    box-shadow: inset 0 0 10px rgba(34, 211, 238, 0.2);
+    padding-left: 20px;
+}
+
+/* Content Area */
+.data-stream {
+    padding: 3rem;
+    overflow-y: auto;
+    background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.05), transparent);
+}
+
+.data-module {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.data-module:hover { border-color: var(--neon-cyan); }
+
+.module-header {
+    display: flex; justify-content: space-between;
+    border-bottom: 1px solid rgba(34, 211, 238, 0.2);
+    padding-bottom: 10px; margin-bottom: 1.5rem;
+}
+
+.module-header h2 { font-family: var(--font-header); color: var(--neon-cyan); margin: 0; font-size: 1.8rem; }
+
+.module-content p { line-height: 1.8; color: var(--text-light); }
+.module-content strong { color: var(--neon-purple); text-shadow: 0 0 5px rgba(168, 85, 247, 0.5); }
+
+.grammar-tag {
+    font-size: 0.7rem; color: var(--neon-green);
+    border: 1px solid var(--neon-green);
+    padding: 4px 10px; border-radius: 2px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-dark); }
+::-webkit-scrollbar-thumb { background: var(--neon-cyan); }
+
+/* ... (todo el CSS anterior se mantiene igual) ... */
+
+/* Content Area */
+.data-stream {
+    padding: 3rem;
+    overflow-y: auto;
+    background: radial-gradient(circle at top right, rgba(168, 85, 247, 0.05), transparent);
+}
+
+.data-module {
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    backdrop-filter: blur(5px);
+}
+
+.data-module:hover { border-color: var(--neon-cyan); }
+
+/* --- NUEVO: Estilos para las Imágenes de los Posts --- */
+.module-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px; /* Ajusta la altura si prefieres imágenes más altas */
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.module-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la proporción de la imagen cubriendo el área */
+    filter: sepia(50%) hue-rotate(180deg) saturate(150%); /* Tinte futurista azulado */
+    transition: filter 0.3s;
+}
+
+.data-module:hover .module-image-container img {
+    filter: none; /* Al pasar el ratón, se ve el color real de la imagen */
+}
+
+/* Efecto Holográfico de Barrido */
+.hologram-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(34, 211, 238, 0.1) 48%,
+        rgba(34, 211, 238, 0.3) 50%,
+        rgba(34, 211, 238, 0.1) 52%,
+        transparent 100%
+    );
+    background-size: 100% 200%;
+    animation: hologramScan 4s linear infinite;
+    pointer-events: none; /* Para que el ratón pase a través del efecto */
+}
+
+@keyframes hologramScan {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 0% 200%; }
+}
+
+/* ... (continúa con el resto de tu CSS) ... */
+
